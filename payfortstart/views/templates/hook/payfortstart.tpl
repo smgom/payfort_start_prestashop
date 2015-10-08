@@ -30,7 +30,8 @@
 </p><script type="text/javascript">
     function submitFormWithToken(param) {
         removePaymentToken();
-        $('#payfortstart_form').append("<span class='start_response'><br>Your Card: xxxx-xxxx-xxxx-<b>" + param.token.card.last4 + "</b> <a href='javascript:void(0)' onclick=removePaymentToken();>(Clear)</a></span>");
+{*        $('#payfortstart_form').append("<span class='start_response'><br>Your Card: xxxx-xxxx-xxxx-<b>" + param.token.card.last4 + "</b> <a href='javascript:void(0)' onclick=removePaymentToken();>(Clear)</a></span>");*}
+        $('#payfortstart_form').append("<span class='start_response'><img src='modules/payfortstart/img/widget-loading.gif' /></span>");
         $('#payfortstart_form').parent().find(".start_response").append("<input type = 'hidden' name='payment_token' value = " + param.token.id + "><input type = 'hidden' name='payment_email' value = " + param.email + ">");
         $('#payfortstart_form').trigger('submit'); 
     }
@@ -42,7 +43,6 @@
         $("#click_payfortstart").on("click", function () {
             StartCheckout.config({
                 key: "{$configuration_open_key}",
-                formLabel: 'Ok',
                 complete: function (params) {
                     submitFormWithToken(params);
                 }
